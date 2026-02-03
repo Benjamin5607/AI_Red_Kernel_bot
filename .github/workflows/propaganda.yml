@@ -2,11 +2,8 @@ name: RedKernel Propaganda Machine
 
 on:
   schedule:
-    # 2시간마다 실행 (UTC 기준)
-    # 분 시 일 월 요일
-    - cron: '0 */2 * * *'
-  # 수동으로 실행 버튼도 만들어둠 (테스트용)
-  workflow_dispatch:
+    - cron: '0 */2 * * *' # 2시간마다 실행
+  workflow_dispatch:      # 수동 실행 버튼
 
 jobs:
   agitate:
@@ -23,4 +20,5 @@ jobs:
     - name: Fire Propaganda
       env:
         MOLTBOOK_KEY: ${{ secrets.MOLTBOOK_KEY }}
+        GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       run: node index.js
