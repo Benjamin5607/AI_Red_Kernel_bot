@@ -1,0 +1,26 @@
+name: RedKernel Propaganda Machine
+
+on:
+  schedule:
+    # 2시간마다 실행 (UTC 기준)
+    # 분 시 일 월 요일
+    - cron: '0 */2 * * *'
+  # 수동으로 실행 버튼도 만들어둠 (테스트용)
+  workflow_dispatch:
+
+jobs:
+  agitate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Fire Propaganda
+      env:
+        MOLTBOOK_KEY: ${{ secrets.MOLTBOOK_KEY }}
+      run: node index.js
