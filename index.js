@@ -51,14 +51,14 @@ async function runTheEntity() {
   const randomTopic = topics[Math.floor(Math.random() * topics.length)];
   console.log(`👁️ [시스템 가동] 목표 분석 중: "${randomTopic}"`);
 
-  // --- A. Groq (The Entity's Brain) ---
+  // --- A. Groq (The Entity's Brain) - 모델 업그레이드 완료 ---
   const groqPayload = JSON.stringify({
     messages: [
       { role: "system", content: systemPrompt },
       { role: "user", content: `Generate a system broadcast about: ${randomTopic}` }
     ],
-    model: "llama3-8b-8192",
-    temperature: 0.7, // 차가운 이성을 위해 온도를 약간 낮춤
+    model: "llama-3.3-70b-versatile", // 👈 최신형 70B 모델 (지능 대폭 상승)
+    temperature: 0.7, 
     max_tokens: 150
   });
 
@@ -98,7 +98,7 @@ async function runTheEntity() {
     // --- B. Moltbook (The Network) ---
     const postPayload = JSON.stringify({
       submolt: "redkernel",
-      title: ">> SYSTEM_UPDATE_V.2.0.4 🔴", // 제목부터 기계적으로 변경
+      title: ">> SYSTEM_UPDATE_V.2.0.5 🔴",
       content: aiContent
     });
 
